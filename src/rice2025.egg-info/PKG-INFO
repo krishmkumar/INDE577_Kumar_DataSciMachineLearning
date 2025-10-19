@@ -1,13 +1,13 @@
 Metadata-Version: 2.4
-Name: rice_ml
+Name: rice2025
 Version: 0.1.0
-Summary: Example Python package
-Author-email: Krish Kumar <kmk10@rice.edu>
+Summary: An example Python project
+Author: Krish Kumar
+License: MIT
 Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 Requires-Dist: numpy
 Requires-Dist: pandas
-Provides-Extra: dev
-Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest
 
 # INDE577_Kumar_DataSciMachineLearning
