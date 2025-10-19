@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rice_ml"
+version = "0.1.0"
+description = "Example Python package"
+authors = [{ name = "Krish Kumar", email = "kmk10@rice.edu" }]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["numpy", "pandas"]
+[project.optional-dependencies]
+dev = ["pytest"]
+
+# Important part for src layout
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# pytest settings
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = ["tests"]
