@@ -1,6 +1,6 @@
 import numpy as np
 from rice2025.supervised_learning.distances import euclidean_distance
-from rice2025.supervised_learning.postprocess import majority_label, average_label
+from rice2025.utils.postprocess import majority_label, average_label
 
 
 class _KNNBase:

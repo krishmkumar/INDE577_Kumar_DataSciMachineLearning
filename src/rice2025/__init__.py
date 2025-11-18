@@ -16,7 +16,7 @@ from .supervised_learning.preprocess import (
     normalize,
     train_test_split,
 )
-from .supervised_learning.postprocess import (
+from .utils.postprocess import (
     majority_label,
     average_label,
 )
@@ -36,3 +36,18 @@ __all__ = [
     "supervised_learning",
     "unsupervised_learning",
 ]
+
+
+# Supervised learning
+from .supervised_learning.knn import KNNClassifier, KNNRegressor
+from .supervised_learning.perceptron import Perceptron
+from .supervised_learning.decision_tree import DecisionTree
+
+# Unsupervised learning
+from .unsupervised_learning.kmeans import KMeans
+
+# Utilities
+from .utils.metrics import euclidean_distance, manhattan_distance
+from .utils.scaling import StandardScaler
+from .utils.train_test_split import train_test_split
+
