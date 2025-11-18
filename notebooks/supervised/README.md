@@ -1,39 +1,62 @@
-# K-Nearest Neighbors (KNN)
+# Supervised Learning Examples
 
-This notebook provides a hands-on implementation of the **K-Nearest Neighbors (KNN)** algorithm from scratch, demonstrating both its mathematical foundation and practical application using the classic **Iris dataset**.
+This directory contains example Jupyter notebooks demonstrating supervised learning algorithms implemented from scratch in the `rice2025` package.  
+Each notebook includes data loading, preprocessing, model training, evaluation, and interpretation.
 
----
-
-## 📘 Overview
-
-In this notebook (`knn_from_scratch.ipynb`), we explore a simple yet powerful non-parametric model — **K-Nearest Neighbors (KNN)**.
-
-At its core, KNN makes predictions by identifying the *k* most similar observations (neighbors) and using them to infer the outcome for a new data point.  
-- For **classification**, it predicts the **majority class** among neighbors.  
-- For **regression**, it predicts the **average value**.
-
-Unlike models such as linear or logistic regression, KNN has **no explicit training phase** — it stores the training data and uses a **distance metric** (commonly Euclidean distance) to make predictions at inference time.  
-This makes KNN intuitive and flexible, though potentially slower for large datasets.
+The purpose of these examples is to provide a clear, hands-on understanding of classical supervised learning models without relying on external machine learning libraries.
 
 ---
 
-## 🧩 Learning Objectives
+## Included Notebooks
 
-By completing this notebook, we aim to:
+### 1. K-Nearest Neighbors (KNN) — From Scratch
+**Path:** `knn/knn_classifier_demo.ipynb`  
+**Dataset:** `iris.csv`
 
-- **Implement** the KNN algorithm from scratch to understand its inner mechanics.  
-- **Apply** KNN to the **Iris flower dataset** to classify species based on sepal and petal measurements.  
-- **Experiment** with different values of *k* and distance metrics to observe their effect on accuracy and decision boundaries.  
-- **Compare** our custom KNN implementation to `sklearn`’s `KNeighborsClassifier` for validation.  
-- **Evaluate** KNN’s strengths and limitations — including interpretability, sensitivity to scaling, and computational efficiency.
+This notebook implements and explores the KNN classification algorithm using your custom `KNNClassifier`:
+
+- Load and inspect the Iris dataset  
+- Perform exploratory data analysis (pairplots, correlations)  
+- Standardize features with `StandardScaler`  
+- Train and evaluate the KNN model  
+- Visualize a confusion matrix  
+- Plot decision regions using PCA projection  
+
+The notebook demonstrates why KNN is non-parametric, how distance-based classification works, and how scaling influences performance.
 
 ---
 
-## ⚙️ Implementation Details
+### 2. Perceptron — From Scratch
+**Path:** `perceptron/perceptron_demo.ipynb`  
+**Dataset:** `digits.csv` (binary-class conversion)
 
-This notebook leverages functions from the custom `rice2025` package, including:
+This notebook implements the classic perceptron algorithm for binary classification:
 
-```python
-from rice2025.supervised.knn import KNN
-from rice2025.metrics import accuracy, confusion_matrix_custom
-from rice2025.preprocess import StandardScaler
+- Prepare and visualize the digits dataset  
+- Convert multi-class digits into a binary task (e.g., “is the digit 8?”)  
+- Train the perceptron using the perceptron update rule  
+- Plot training loss over epochs  
+- Compute model accuracy on the test set  
+
+The notebook explains linear decision boundaries, misclassification updates, and interprets the perceptron’s limitations and strengths.
+
+---
+
+## Purpose of This Directory
+
+These examples:
+
+- Demonstrate correct usage of the `rice2025` package  
+- Provide reproducible end-to-end workflows  
+- Reinforce intuition behind core supervised models  
+- Serve as reference guides for how to structure experiments, EDA, and evaluations  
+
+---
+
+
+## Notes
+
+- All datasets used are real datasets stored locally in this directory.  
+- Models rely only on implementations from the `rice2025` package—no scikit-learn classifiers are used.  
+- Visualizations use Matplotlib and Seaborn for clarity and interpretability.
+
