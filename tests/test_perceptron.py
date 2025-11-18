@@ -1,5 +1,5 @@
 import numpy as np
-from rice2025.supervised.perceptron import Perceptron
+from rice2025.supervised_learning.perceptron import Perceptron
 
 
 def test_perceptron_fit_and_predict():

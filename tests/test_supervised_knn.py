@@ -1,26 +1,22 @@
-class KNNRegressor(_KNNBase):
-    """
-    K-Nearest Neighbors regressor using mean of neighbor values.
-    """
+import numpy as np
+from rice2025.supervised_learning.knn import KNNRegressor, KNNClassifier
 
-    def predict(self, X):
-        X = np.asarray(X, dtype=float)
-        _, idx = self.kneighbors(X)
-        preds = []
+def test_knn_regressor_basic():
+    X = np.array([[0],[1],[2],[3]], dtype=float)
+    y = np.array([0.0, 1.0, 1.5, 3.0])
+    
+    model = KNNRegressor(n_neighbors=2)
+    model.fit(X, y)
+    
+    pred = model.predict([[1.5]])
+    assert np.isclose(pred[0], 1.25)
 
-        for neighbors in idx:
-            y_vals = self.y_train[neighbors].astype(float)
-            preds.append(np.mean(y_vals))
+def test_knn_classifier_basic():
+    X = np.array([[0,0],[0,1],[1,0],[1,1]], dtype=float)
+    y = np.array([0,0,1,1])
 
-        return np.array(preds)
+    model = KNNClassifier(n_neighbors=3)
+    model.fit(X, y)
 
-    def score(self, X, y):
-        y = np.asarray(y, dtype=float)
-        y_pred = self.predict(X)
-
-        ss_res = np.sum((y - y_pred) ** 2)
-        ss_tot = np.sum((y - np.mean(y)) ** 2)
-
-        if ss_tot == 0:
-            return 1.0 if ss_res == 0 else 0.0
-        return float(1 - ss_res / ss_tot)
+    pred = model.predict([[0.1, 0.1]])
+    assert pred[0] == 0

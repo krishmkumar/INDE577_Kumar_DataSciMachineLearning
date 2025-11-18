@@ -1,13 +1,13 @@
 """
-Perceptron (NumPy-only).
+Perceptron 
 
 A simple binary linear classifier using the classic perceptron update rule.
 Supports:
 - fit(X, y)
 - predict(X)
 - score(X, y)
+- accuracy(X, y)
 
-This class is intentionally small and dependency-free for teaching.
 """
 
 import numpy as np
@@ -33,19 +33,19 @@ class Perceptron:
     def __init__(self, learning_rate: float = 0.01, n_iterations: int = 1000):
         self.learning_rate = float(learning_rate)
         self.n_iterations = int(n_iterations)
-        self.weights = None
-        self.bias = None
-        self.loss_ = []
+        self.weights: np.ndarray | None = None
+        self.bias: float | None = None
+        self.loss_: list[float] = []
 
     # ------------------------- Helper -------------------------
 
-    def _loss(self, y_true, y_pred):
+    def _loss(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
         """Mean-squared error between predicted (0/1) and true labels."""
-        return np.mean((y_true - y_pred) ** 2)
+        return float(np.mean((y_true - y_pred) ** 2))
 
     # ------------------------- API ----------------------------
 
-    def fit(self, X: np.ndarray, y: np.ndarray):
+    def fit(self, X: np.ndarray, y: np.ndarray) -> "Perceptron":
         """
         Train the perceptron using the perceptron update rule.
 
@@ -58,12 +58,12 @@ class Perceptron:
         y = np.asarray(y, dtype=int)
 
         n_samples, n_features = X.shape
-        self.weights = np.zeros(n_features)
+        self.weights = np.zeros(n_features, dtype=float)
         self.bias = 0.0
 
         for _ in range(self.n_iterations):
             for xi, yi in zip(X, y):
-                linear = np.dot(xi, self.weights) + self.bias
+                linear = float(np.dot(xi, self.weights) + self.bias)
                 y_pred = 1 if linear >= 0 else 0
                 update = self.learning_rate * (yi - y_pred)
                 self.weights += update * xi
@@ -78,11 +78,15 @@ class Perceptron:
     def predict(self, X: np.ndarray) -> np.ndarray:
         """Return class predictions (0 or 1)."""
         X = np.asarray(X, dtype=float)
-        linear = X @ self.weights + self.bias
+        linear = X @ self.weights + self.bias  # type: ignore[operator]
         return (linear >= 0).astype(int)
 
     def score(self, X: np.ndarray, y: np.ndarray) -> float:
-        """Return accuracy."""
+        """Return accuracy on (X, y)."""
         y = np.asarray(y, dtype=int)
         preds = self.predict(X)
         return float(np.mean(preds == y))
+
+    def accuracy(self, X: np.ndarray, y: np.ndarray) -> float:
+        """Return accuracy of predictions (alias for score)."""
+        return self.score(X, y)

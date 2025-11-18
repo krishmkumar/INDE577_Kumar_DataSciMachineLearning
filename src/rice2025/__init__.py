@@ -1,15 +1,27 @@
-__all__ = ["preprocess", "metrics", "knn", "postprocess"]
-
 """
 rice2025 - A lightweight educational machine learning package.
 """
 
+# Expose simple package-wide utilities
 from .basic_functions import add
-from .metrics import euclidean_distance, manhattan_distance
-from .preprocess import normalize, train_test_split
-from .postprocess import majority_label, average_label
 
-# Expose subpackages
+# Correct imports for distances (they live under supervised_learning now!)
+from .supervised_learning.distances import (
+    euclidean_distance,
+    manhattan_distance,
+)
+
+# Preprocessing / Postprocessing
+from .supervised_learning.preprocess import (
+    normalize,
+    train_test_split,
+)
+from .supervised_learning.postprocess import (
+    majority_label,
+    average_label,
+)
+
+# Subpackages
 from . import supervised_learning
 from . import unsupervised_learning
 
