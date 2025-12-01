@@ -5,12 +5,27 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "rice2025"
 version = "0.1.0"
-description = "An example Python project"
+description = "A machine learning library implementing supervised and unsupervised algorithms for the INDE 577 course at Rice University."
 authors = [{ name = "Krish Kumar" }]
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.9"
-dependencies = ["numpy", "pandas", "pytest"]
+dependencies = [
+    "numpy",
+    "pandas"
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+# Classifiers 
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
 
 [tool.setuptools]
 package-dir = { "" = "src" }
@@ -18,6 +33,7 @@ package-dir = { "" = "src" }
 [tool.setuptools.packages.find]
 where = ["src"]
 
+# Pytest configuration
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "-ra -q"
