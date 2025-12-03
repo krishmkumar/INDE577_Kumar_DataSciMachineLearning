@@ -1,1 +1,14 @@
+# Core dependencies for your package
+numpy
+pandas
+scikit-learn
+
+# Testing
 pytest
+
+# Linting & formatting
+ruff
+black
+
+# Building packages
+build
