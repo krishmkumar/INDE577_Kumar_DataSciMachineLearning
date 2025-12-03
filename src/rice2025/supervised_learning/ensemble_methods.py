@@ -5,7 +5,6 @@ from .knn import KNNClassifier
 
 
 def _validate_inputs(X, y=None):
-    """Ensure X and y are numpy arrays and have valid shapes."""
     X = np.asarray(X)
     if y is not None:
         y = np.asarray(y)
@@ -16,29 +15,11 @@ def _validate_inputs(X, y=None):
 
 
 def _majority_vote(preds_col):
-    """Resolve ties deterministically: highest count, then lowest label."""
     counts = Counter(preds_col)
-    # Sort: first by decreasing frequency, then by label value
-    winner = sorted(counts.items(), key=lambda x: (-x[1], x[0]))[0][0]
-    return winner
+    return sorted(counts.items(), key=lambda x: (-x[1], x[0]))[0][0]
 
 
 class BaggingClassifier:
-    """
-    Basic Bagging (Bootstrap Aggregation) Classifier.
-
-    Parameters
-    ----------
-    base_learner : class
-        The class for each bootstrap model (e.g., DecisionTree, KNNClassifier).
-    n_estimators : int
-        Number of bootstrap models.
-    max_samples : float, 0 < max_samples <= 1
-        Fraction of training data to sample per bootstrap.
-    random_state : int or None
-        Seed for reproducibility.
-    """
-
     def __init__(
         self,
         base_learner=DecisionTree,
@@ -61,8 +42,7 @@ class BaggingClassifier:
         self.models = []
         for _ in range(self.n_estimators):
             idx = self.rng.choice(n, size=sample_size, replace=True)
-            X_boot = X[idx]
-            y_boot = y[idx]
+            X_boot, y_boot = X[idx], y[idx]
 
             model = self.base_learner()
             model.fit(X_boot, y_boot)
@@ -72,23 +52,11 @@ class BaggingClassifier:
 
     def predict(self, X):
         X = _validate_inputs(X)
-        # (n_estimators, n_samples)
         preds = np.array([np.asarray(m.predict(X)) for m in self.models])
-
-        final = [_majority_vote(preds[:, j]) for j in range(X.shape[0])]
-        return np.array(final)
+        return np.array([_majority_vote(preds[:, j]) for j in range(X.shape[0])])
 
 
 class VotingClassifier:
-    """
-    Hard Voting Classifier.
-
-    Parameters
-    ----------
-    models : list
-        List of model instances implementing .fit() and .predict()
-    """
-
     def __init__(self, models):
         self.models = models
 
@@ -102,24 +70,10 @@ class VotingClassifier:
     def predict(self, X):
         X = _validate_inputs(X)
         preds = np.array([np.asarray(m.predict(X)) for m in self.models])
-        final = [_majority_vote(preds[:, j]) for j in range(X.shape[0])]
-        return np.array(final)
+        return np.array([_majority_vote(preds[:, j]) for j in range(X.shape[0])])
 
 
 class RandomForestClassifier:
-    """
-    Simple Random Forest Classifier.
-
-    Parameters
-    ----------
-    n_estimators : int
-        Number of decision trees.
-    max_samples : float
-        Bootstrap fraction per tree.
-    random_state : int or None
-        Seed for reproducibility.
-    """
-
     def __init__(self, n_estimators=10, max_samples=1.0, random_state=None):
         self.n_estimators = n_estimators
         self.max_samples = max_samples
@@ -135,11 +89,9 @@ class RandomForestClassifier:
         self.trees = []
         for _ in range(self.n_estimators):
             idx = self.rng.choice(n, size=sample_size, replace=True)
-            X_boot = X[idx]
-            y_boot = y[idx]
+            X_boot, y_boot = X[idx], y[idx]
 
-            # DecisionTree must support random_feature_subset=True
-            tree = DecisionTree(random_feature_subset=True)
+            tree = DecisionTree()  # FIX: remove unsupported argument
             tree.fit(X_boot, y_boot)
             self.trees.append(tree)
 
@@ -148,5 +100,4 @@ class RandomForestClassifier:
     def predict(self, X):
         X = _validate_inputs(X)
         preds = np.array([np.asarray(t.predict(X)) for t in self.trees])
-        final = [_majority_vote(preds[:, j]) for j in range(X.shape[0])]
-        return np.array(final)
+        return np.array([_majority_vote(preds[:, j]) for j in range(X.shape[0])])
