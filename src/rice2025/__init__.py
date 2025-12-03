@@ -2,16 +2,16 @@
 rice2025 - A lightweight educational machine learning package.
 """
 
-# Expose simple package-wide utilities
+# Package-wide basic utility
 from .basic_functions import add
 
-# Correct imports for distances (they live under supervised_learning now!)
+# Distances (canonical versions from supervised_learning)
 from .supervised_learning.distances import (
     euclidean_distance,
     manhattan_distance,
 )
 
-# Preprocessing / Postprocessing
+# Preprocessing / postprocessing
 from .supervised_learning.preprocess import (
     normalize,
     train_test_split,
@@ -25,29 +25,37 @@ from .utils.postprocess import (
 from . import supervised_learning
 from . import unsupervised_learning
 
-__all__ = [
-    "add",
-    "euclidean_distance",
-    "manhattan_distance",
-    "normalize",
-    "train_test_split",
-    "majority_label",
-    "average_label",
-    "supervised_learning",
-    "unsupervised_learning",
-]
-
-
-# Supervised learning
+# Supervised learning models
 from .supervised_learning.knn import KNNClassifier, KNNRegressor
 from .supervised_learning.perceptron import Perceptron
 from .supervised_learning.decision_tree import DecisionTree
 
-# Unsupervised learning
+# Unsupervised learning models
 from .unsupervised_learning.kmeans import KMeans
 
 # Utilities
-from .utils.metrics import euclidean_distance, manhattan_distance
 from .utils.scaling import StandardScaler
-from .utils.train_test_split import train_test_split
 
+__all__ = [
+    # basic utilities
+    "add",
+    # distances
+    "euclidean_distance",
+    "manhattan_distance",
+    # preprocessing / postprocessing
+    "normalize",
+    "train_test_split",
+    "majority_label",
+    "average_label",
+    # models
+    "KNNClassifier",
+    "KNNRegressor",
+    "Perceptron",
+    "DecisionTree",
+    "KMeans",
+    # utilities
+    "StandardScaler",
+    # subpackages
+    "supervised_learning",
+    "unsupervised_learning",
+]
