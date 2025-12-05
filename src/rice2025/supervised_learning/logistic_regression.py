@@ -127,6 +127,53 @@ class LogisticRegression:
         p1 = self._sigmoid(z)
         p0 = 1 - p1
         return np.vstack([p0, p1]).T
+   
+    def roc_curve(self, X, y, num_thresholds=200):
+        """
+        Compute ROC curve (FPR, TPR) and AUC manually without sklearn.
+
+        Parameters
+        ----------
+        X : array-like
+            Feature matrix.
+        y : array-like
+            True binary labels.
+        num_thresholds : int
+            Number of probability thresholds to evaluate.
+
+        Returns
+        -------
+        fprs : np.ndarray
+            False positive rates.
+        tprs : np.ndarray
+            True positive rates.
+        auc : float
+            Area under the ROC curve.
+        """
+        X, y = _prepare_X_y(X, y)
+        probs = self.predict_proba(X)[:, 1]
+
+        thresholds = np.linspace(0, 1, num_thresholds)
+        tprs = []
+        fprs = []
+
+        for t in thresholds:
+            preds = (probs >= t).astype(int)
+
+            TP = np.sum((preds == 1) & (y == 1))
+            FP = np.sum((preds == 1) & (y == 0))
+            FN = np.sum((preds == 0) & (y == 1))
+            TN = np.sum((preds == 0) & (y == 0))
+
+            TPR = TP / (TP + FN) if (TP + FN) > 0 else 0
+            FPR = FP / (FP + TN) if (FP + TN) > 0 else 0
+
+            tprs.append(TPR)
+            fprs.append(FPR)
+
+        auc = np.trapz(tprs, fprs)
+        return np.array(fprs), np.array(tprs), auc
+
 
     def predict(self, X, threshold=0.5):
         probs = self.predict_proba(X)[:, 1]

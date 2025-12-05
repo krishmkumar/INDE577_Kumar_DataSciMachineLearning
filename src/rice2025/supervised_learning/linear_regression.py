@@ -158,3 +158,64 @@ class LinearRegression:
         ss_res = np.sum((y - y_pred) ** 2)
         ss_tot = np.sum((y - np.mean(y)) ** 2)
         return 1 - ss_res / ss_tot
+    
+    def residuals(self, X, y):
+        """
+        Return residuals: (y - y_pred)
+        """
+        X, y = _validate_inputs(X, y)
+        return y - self.predict(X)
+
+    def mse(self, X, y):
+        """
+        Mean Squared Error
+        """
+        res = self.residuals(X, y)
+        return np.mean(res ** 2)
+
+    def rmse(self, X, y):
+        """
+        Root Mean Squared Error
+        """
+        return np.sqrt(self.mse(X, y))
+
+    def mae(self, X, y):
+        """
+        Mean Absolute Error
+        """
+        res = self.residuals(X, y)
+        return np.mean(np.abs(res))
+
+    def plot_residuals(self, X, y):
+        """
+        Residuals vs Predicted Plot
+        """
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+        
+        X, y = _validate_inputs(X, y)
+        y_pred = self.predict(X)
+        res = y - y_pred
+
+        plt.figure(figsize=(8, 5))
+        sns.scatterplot(x=y_pred, y=res)
+        plt.axhline(0, color="red", linestyle="--")
+        plt.xlabel("Predicted Values")
+        plt.ylabel("Residuals")
+        plt.title("Residuals vs Predicted Values")
+        plt.show()
+
+    def summary(self, X, y):
+        """
+        Print a summary of key regression metrics.
+        """
+        print("Model Summary")
+        print("-" * 40)
+        print(f"Intercept: {self.intercept_}")
+        print(f"Coefficients: {self.coef_}")
+        print(f"R² Score: {self.score(X, y):.4f}")
+        print(f"MSE: {self.mse(X, y):.4f}")
+        print(f"RMSE: {self.rmse(X, y):.4f}")
+        print(f"MAE: {self.mae(X, y):.4f}")
+        print("-" * 40)
+

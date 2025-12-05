@@ -12,7 +12,7 @@ from .supervised_learning.distances import (
 )
 
 # Preprocessing / postprocessing
-from .supervised_learning.preprocess import (
+from .utils.preprocess import (
     normalize,
     train_test_split,
 )

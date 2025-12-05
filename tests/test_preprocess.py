@@ -1,5 +1,5 @@
 import numpy as np
-from rice2025.supervised_learning.preprocess import normalize, train_test_split
+from rice2025.utils.preprocess import normalize, train_test_split
 
 def test_normalize_mean_std():
     X = np.array([[1, 2], [3, 4], [5, 6]])
