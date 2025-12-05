@@ -13,6 +13,19 @@ These examples serve as both **tutorials** and **reference implementations** for
 
 ---
 
+## What Is Supervised Learning?
+
+Supervised learning refers to machine learning tasks where a model is trained using **labeled data**—datasets where each example includes both input features and a known output (such as a class label or numeric value).  
+The goal is for the model to learn a mapping from inputs to outputs so it can generalize and make predictions on new, unseen data.
+
+Supervised learning methods fall into two main categories:
+
+- **Classification:** predicting discrete categories (e.g., “survived vs. not survived,” “digit 5 vs. not 5”).  
+- **Regression:** predicting continuous values (e.g., exam scores, housing prices).
+
+The notebooks in this directory illustrate how these models are implemented **from scratch**, how they behave on real datasets, and how to evaluate their performance.
+
+---
 ## 📁 Included Methods & Notebooks
 
 Below is a list of all algorithms currently implemented in this directory, organized by folder.

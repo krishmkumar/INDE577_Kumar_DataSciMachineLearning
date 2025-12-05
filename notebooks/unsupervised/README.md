@@ -14,6 +14,23 @@ These examples are intended to build strong intuition for how unsupervised learn
 
 ---
 
+## What Is Unsupervised Learning?
+
+Unsupervised learning refers to machine learning tasks where the model is trained on **unlabeled data**—datasets where no explicit outputs, categories, or target values are provided.  
+Instead of learning to predict a known label, the algorithm attempts to **discover structure** in the data on its own.
+
+Common goals in unsupervised learning include:
+
+- **Clustering:** grouping similar observations together based on distance or density  
+- **Dimensionality reduction:** compressing high-dimensional data into a lower-dimensional representation  
+- **Pattern discovery:** identifying latent structure, communities, or relationships
+
+Unsupervised methods are es sential when labels are unavailable, expensive to collect, or when the primary goal is to explore and understand underlying data patterns.  
+The notebooks in this directory demonstrate how these algorithms behave, how to interpret their outputs, and how they are implemented from scratch in the `rice2025` package.
+
+---
+
+
 ## 📁 Included Methods & Notebooks
 
 Below are all unsupervised methods implemented in this directory.
