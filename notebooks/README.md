@@ -50,7 +50,7 @@ See the README inside `unsupervised/` for full details on each method included.
 
 The notebooks in this folder are designed to:
 
-- Serve as tutorials for students using the `rice2025` package  
+- Serve as tutorials and execution for using the `rice2025` package  
 - Demonstrate the correct usage of each algorithm  
 - Provide clean, reproducible examples for INDE 577 coursework  
 - Help users understand the **theory**, **implementation**, and **practical behavior** of classical ML methods  
