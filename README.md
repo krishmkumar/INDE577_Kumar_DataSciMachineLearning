@@ -45,7 +45,7 @@ The repo showcases:
 
 ---
 
-## 📁 Repository Structure (Concise)
+## 📁 Repository Structure 
 
 A high-level view of the important pieces:
 
@@ -169,5 +169,6 @@ See the `LICENSE` file for full details.
 ## 👤 Author
 
 **Krish Kumar**  
+kmk10@rice.edu
 Rice University — INDE 577  
 GitHub: https://github.com/krishmkumar
