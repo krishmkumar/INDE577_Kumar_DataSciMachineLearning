@@ -2,54 +2,63 @@ import numpy as np
 
 class LabelPropagation:
     """
-    Unsupervised community detection using Label Propagation.
-    Works on an undirected graph with adjacency matrix A.
-
-    Nodes iteratively update their labels to the most frequent label
-    among their neighbors until convergence.
+    Unsupervised community detection using Label Propagation (LPA).
+    Pure NumPy implementation — no SciPy required.
     """
 
-    def __init__(self, max_iter=1000, seed=42):
+    def __init__(self, max_iter=1000, seed=42, damping=0.0, tol=0):
         self.max_iter = max_iter
         self.seed = seed
+        self.damping = damping
+        self.tol = tol
         self.labels_ = None
 
+    def _get_neighbors(self, A, i):
+        """Return neighbors of node i for dense adjacency matrix."""
+        return np.where(A[i] > 0)[0]
+
     def fit(self, A):
-        """
-        A : adjacency matrix (numpy array), shape (n, n)
-        """
         rng = np.random.default_rng(self.seed)
         A = np.array(A)
-        n = A.shape[0]
 
-        # initialize labels as unique IDs
+        # safety checks
+        if A.shape[0] != A.shape[1]:
+            raise ValueError("Adjacency matrix must be square.")
+        if not np.allclose(A, A.T):
+            raise ValueError("Adjacency matrix must be symmetric.")
+
+        n = A.shape[0]
         labels = np.arange(n)
 
         for _ in range(self.max_iter):
             old_labels = labels.copy()
 
-            # iterate deterministically from 0..n-1 for reproducibility
-            for i in range(n):
-                neighbors = np.where(A[i] > 0)[0]
+            # random update order
+            update_order = rng.permutation(n)
+
+            for i in update_order:
+                neighbors = self._get_neighbors(A, i)
                 if len(neighbors) == 0:
                     continue
 
-                # get labels of neighbors
                 neighbor_labels = labels[neighbors]
-
-                # pick the most frequent label
                 values, counts = np.unique(neighbor_labels, return_counts=True)
-                labels[i] = values[np.argmax(counts)]
+                max_count = counts.max()
+                candidates = values[counts == max_count]
 
-            # convergence check
-            if np.array_equal(labels, old_labels):
+                chosen = rng.choice(candidates)
+
+                if rng.random() >= self.damping:
+                    labels[i] = chosen
+
+            changes = np.sum(labels != old_labels)
+            if changes < self.tol:
                 break
 
         self.labels_ = labels
         return self
 
     def predict(self):
-        """
-        Return community labels for all nodes.
-        """
+        if self.labels_ is None:
+            raise ValueError("Model has not been fitted yet.")
         return self.labels_.copy()
