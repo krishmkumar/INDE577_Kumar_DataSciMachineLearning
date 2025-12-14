@@ -136,6 +136,29 @@ This notebook includes:
 - Plotting training convergence  
 - Understanding linear decision boundaries  
 
+## 🌲 Regression Trees (CART-Style)  
+**Folder:** `regression_trees/`  
+**Notebook:** `regression_trees_demo.ipynb`  
+**Model:** Custom `RegressionTree` (CART-style, classification-oriented)
+
+This notebook demonstrates a **tree-based learning model implemented from scratch**
+and applied to a real-world housing dataset. Although the model class is named
+`RegressionTree`, the implementation follows a **classification-oriented CART
+formulation** using Gini impurity and majority voting at leaf nodes.
+
+Topics covered include:
+
+- Discretizing a continuous target variable into categorical price ranges  
+- Building a CART-style tree using impurity-based splits  
+- Evaluating performance with accuracy and confusion matrices  
+- Analyzing the effect of tree depth on generalization  
+- Interpreting predictions and class probabilities  
+
+This example highlights how tree-based models can be applied to continuous
+real-world data through careful preprocessing while maintaining full alignment
+between theoretical formulation and implementation.
+
+
 ---
 
 ## 🎯 Purpose of This Directory
