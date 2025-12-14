@@ -1,3 +1,30 @@
+"""
+CART-Style Tree Model (from scratch).
+
+This module implements a simple CART-style decision tree using Gini impurity
+as the splitting criterion. The tree is constructed recursively by selecting
+feature–threshold splits that minimize weighted Gini impurity, and predictions
+are made via tree traversal.
+
+Key features:
+- Binary or multiclass classification
+- Gini impurity–based splitting
+- Recursive tree construction with depth and sample-size stopping rules
+- Deterministic class probability estimates at leaf nodes
+- Dictionary-based tree representation for transparency and inspection
+
+Design notes:
+- Although named `RegressionTree`, this implementation performs
+  classification using class counts and Gini impurity
+- No pruning or feature subsampling is performed
+- Intended for clarity and instructional use rather than efficiency
+
+This implementation relies only on NumPy and is designed for educational
+demonstration in the INDE 577 course context, emphasizing interpretability
+over production-level optimization.
+"""
+
+
 import numpy as np
 
 class RegressionTree:

@@ -1,5 +1,23 @@
-import numpy as np
+"""
+Decision Tree Classifier (from scratch).
 
+This module implements a simple binary decision tree classifier using
+entropy and information gain as the splitting criterion. The tree is built
+recursively by selecting the feature and threshold that maximize information
+gain at each node, with optional depth control to prevent overfitting.
+
+Key characteristics:
+- Supports binary and multiclass classification
+- Uses entropy-based information gain for splits
+- Handles continuous features via thresholding
+- Implements prediction via recursive tree traversal
+- Designed for clarity and educational purposes rather than performance
+
+This implementation avoids external machine learning libraries and relies
+only on NumPy, making it suitable for instructional use and algorithmic
+demonstration in the INDE 577 course context.
+"""
+import numpy as np
 
 # ==========================
 # Utility: Entropy

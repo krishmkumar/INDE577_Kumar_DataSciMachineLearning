@@ -1,3 +1,27 @@
+"""
+k-Nearest Neighbors (kNN) Models (from scratch).
+
+This module implements k-Nearest Neighbors (kNN) for both classification and
+regression. Predictions are made by identifying the k closest training samples
+using Euclidean distance and aggregating their labels via majority vote
+(classification) or averaging (regression).
+
+Implemented classes:
+- KNNClassifier: kNN for classification using majority voting
+- KNNRegressor: kNN for regression using mean aggregation
+
+Key characteristics:
+- Distance-based, non-parametric learning
+- Supports both `k=` and `n_neighbors=` initialization styles
+- Uses Euclidean distance as the similarity metric
+- Requires no explicit training phase beyond storing data
+- Designed for clarity and instructional use rather than performance
+
+This implementation avoids external machine learning libraries and relies only
+on NumPy and simple utility functions, making it suitable for educational use
+in the INDE 577 course context.
+"""
+
 import numpy as np
 from rice2025.supervised_learning.distances import euclidean_distance
 from rice2025.utils.postprocess import majority_label, average_label

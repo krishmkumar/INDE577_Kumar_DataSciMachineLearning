@@ -1,3 +1,30 @@
+"""
+Logistic Regression (from scratch).
+
+This module implements binary Logistic Regression using gradient descent
+optimization. The model supports optional L2 regularization, explicit control
+over optimization parameters, probability prediction, classification, and
+basic diagnostic utilities.
+
+Key features:
+- Binary classification with labels {0, 1}
+- Gradient descent optimization with convergence tolerance
+- Optional L2 regularization (Ridge-style penalty)
+- Stable sigmoid computation with numerical clipping
+- Probability predictions and decision scores
+- Manual ROC curve and AUC computation without sklearn
+
+Design notes:
+- Only binary classification is supported by design
+- Intercept handling is performed internally
+- External machine learning libraries are intentionally avoided
+
+This implementation relies only on NumPy and is intended for educational and
+instructional use in the INDE 577 course context rather than production-scale
+deployment.
+"""
+
+
 import numpy as np
 
 

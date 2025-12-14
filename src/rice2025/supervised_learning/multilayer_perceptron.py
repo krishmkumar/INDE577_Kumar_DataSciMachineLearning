@@ -1,3 +1,31 @@
+"""
+Multilayer Perceptron (MLP) Classifier (from scratch).
+
+This module implements a feedforward Multilayer Perceptron (MLP) for binary
+classification using fully connected layers and backpropagation. The network
+supports multiple hidden layers, configurable activation functions, L2
+regularization, and gradient-based optimization.
+
+Key features:
+- Binary classification with labels {0, 1}
+- Arbitrary number of hidden layers
+- ReLU or Sigmoid activations in hidden layers
+- Sigmoid output layer with binary cross-entropy loss
+- Backpropagation with full-batch gradient descent
+- Optional L2 regularization via weight decay
+- sklearn-like API with fit, predict, and score methods
+
+Design notes:
+- Only NumPy is used; no external deep learning libraries are required
+- Weights are initialized using He or Xavier initialization depending on activation
+- Numerical stability is handled via clipping in sigmoid computations
+- Intended for clarity and instructional use rather than large-scale performance
+
+This implementation is designed for educational demonstration in the
+INDE 577 course context and emphasizes transparency over efficiency.
+"""
+
+
 import numpy as np
 
 

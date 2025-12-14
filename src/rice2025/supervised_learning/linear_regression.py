@@ -1,3 +1,26 @@
+"""
+Linear Regression Models (from scratch).
+
+This module implements Ordinary Least Squares (OLS) linear regression with
+optional L2 regularization (Ridge) and optional optimization via gradient
+descent. The model supports prediction, standard regression diagnostics,
+and common error metrics.
+
+Key features:
+- Closed-form solution via the normal equation
+- Optional gradient descent optimizer
+- Optional L2 regularization (Ridge regression)
+- Automatic handling of intercept terms
+- Evaluation metrics including R², MSE, RMSE, and MAE
+- Residual analysis utilities and summary reporting
+
+This implementation avoids external machine learning libraries and relies
+only on NumPy (with optional plotting utilities), making it suitable for
+instructional use and algorithmic demonstration in the INDE 577 course
+context.
+"""
+
+
 import numpy as np
 
 

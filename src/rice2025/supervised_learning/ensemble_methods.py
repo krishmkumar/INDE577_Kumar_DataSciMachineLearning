@@ -1,3 +1,27 @@
+"""
+Ensemble Learning Methods (from scratch).
+
+This module implements basic ensemble classifiers using bootstrap aggregation
+and majority voting. The goal is to demonstrate how combining multiple weak or
+moderate learners can improve predictive stability and robustness.
+
+Implemented methods:
+- BaggingClassifier: Bootstrap aggregation using a configurable base learner
+- VotingClassifier: Majority-vote ensemble over a fixed set of models
+- RandomForestClassifier: Bagged decision trees without feature subsampling
+
+Key characteristics:
+- Uses bootstrapped resampling of training data
+- Aggregates predictions via deterministic majority voting
+- Supports any base learner with `fit` and `predict` methods
+- Relies only on NumPy and Python standard libraries
+- Designed for clarity and instructional use rather than performance
+
+This implementation avoids external machine learning libraries and is intended
+for educational demonstration in the INDE 577 course context.
+"""
+
+
 import numpy as np
 from collections import Counter
 from .decision_tree import DecisionTree
