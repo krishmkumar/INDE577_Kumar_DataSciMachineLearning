@@ -1,4 +1,4 @@
-# INDE577_Kumar_DataSciMachineLearning
+# Machine Learning Algorithms and Applications
 
 This repository contains a custom machine learning package developed for **INDE 577 — Machine Learning Package Development** at **Rice University**.
 
