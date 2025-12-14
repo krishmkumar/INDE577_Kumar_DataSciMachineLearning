@@ -1,5 +1,8 @@
 # Machine Learning Algorithms and Applications
 
+
+![Machine Learning Visualization](machine_learning_banner.jpg)
+
 This repository contains a custom machine learning package developed for **INDE 577 — Machine Learning Package Development** at **Rice University**.
 
 The project implements classic supervised and unsupervised learning algorithms **from scratch using NumPy**, wrapped in a clean Python package (`rice2025`) and demonstrated through structured example notebooks.
