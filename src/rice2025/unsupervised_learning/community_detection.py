@@ -1,3 +1,26 @@
+"""
+Label Propagation Algorithm (LPA) for Community Detection.
+
+This module implements an unsupervised community detection algorithm based on
+Label Propagation, using a pure NumPy formulation. The algorithm operates on an
+undirected graph represented by a dense adjacency matrix and discovers
+communities by iteratively propagating labels between neighboring nodes.
+
+At initialization, each node is assigned a unique label. During each iteration,
+nodes update their labels by adopting the most frequent label among their
+neighbors. Over time, labels stabilize and form coherent communities without
+requiring a predefined number of clusters.
+
+This implementation:
+- Requires no external graph libraries (e.g., NetworkX or SciPy)
+- Supports randomized update order for convergence stability
+- Allows optional damping to reduce oscillations
+- Terminates early when label changes fall below a tolerance threshold
+
+The algorithm is suitable for exploratory community detection in moderate-sized
+graphs and emphasizes clarity and correctness over large-scale optimization.
+"""
+
 import numpy as np
 
 class LabelPropagation:

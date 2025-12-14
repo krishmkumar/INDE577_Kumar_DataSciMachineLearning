@@ -1,3 +1,27 @@
+"""
+K-Means Clustering Algorithm (Lloyd's Algorithm).
+
+This module implements the classic K-Means clustering algorithm from scratch
+using NumPy. K-Means is an unsupervised learning method that partitions data
+into a fixed number of clusters by iteratively assigning points to the nearest
+centroid and updating centroids as the mean of assigned points.
+
+The algorithm alternates between:
+1. Assignment step: assigning each sample to the closest centroid
+2. Update step: recomputing centroids as the mean of their assigned samples
+
+This implementation:
+- Uses Euclidean distance for cluster assignment
+- Supports random centroid initialization with reproducibility
+- Detects convergence based on centroid movement tolerance
+- Handles empty clusters by reinitializing their centroids
+- Computes inertia (within-cluster sum of squares) after fitting
+
+The focus of this implementation is clarity, correctness, and educational value,
+rather than large-scale performance optimization.
+"""
+
+
 import numpy as np
 
 
