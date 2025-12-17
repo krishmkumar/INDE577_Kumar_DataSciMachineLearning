@@ -13,7 +13,7 @@ The repo showcases:
 - Modular Python package design  
 - Educational Jupyter notebooks with real datasets  
 - Utility modules for preprocessing, metrics, and evaluation  
-- A complete `pytest` test suite for reliability  
+- A complete `pytest` test suite for reliability   
 
 ---
 
