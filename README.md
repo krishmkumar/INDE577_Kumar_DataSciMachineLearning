@@ -175,3 +175,7 @@ See the `LICENSE` file for full details.
 kmk10@rice.edu
 Rice University — INDE 577  
 GitHub: https://github.com/krishmkumar
+
+----
+## References to Generative AI
+Copilot and ChatGPT 5.1 were used to help draft and adhere to clean Github and repository standards
